@@ -1,0 +1,304 @@
+/* =========================================
+   STYLE GÉNÉRAL (Commun à toutes les pages)
+   ========================================= */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Utilitaires et Logo */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.logo-img {
+    max-width: 300px; /* Ajustez selon votre image */
+    display: block;
+    margin: 0 auto;
+}
+.brand-name {
+    color: #2b5ba3;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 10px;
+}
+
+/* Boutons Généraux */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-weight: 500;
+}
+.btn-black {
+    background-color: black;
+    color: white;
+}
+.btn-black:hover { background-color: #333; }
+.btn-white {
+    background-color: white;
+    color: black;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   PAGE D'ACCUEIL (index.html)
+   ========================================= */
+.split-container {
+    display: flex;
+    height: 100vh;
+}
+.left-side {
+    flex: 1;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.right-side {
+    flex: 1;
+    background: #e0e0e0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.actions-box {
+    width: 100%;
+    max-width: 350px;
+}
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+.separator::before, .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #999;
+}
+.separator:not(:empty)::before { margin-right: .5em; }
+.separator:not(:empty)::after { margin-left: .5em; }
+
+/* =========================================
+   PAGES CONNEXION & INSCRIPTION (connexion.html / profil.html)
+   ========================================= */
+.page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1a1a1a; /* Fond sombre */
+}
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 0;
+    width: 100%;
+    max-width: none;
+    min-height:100vh;
+    box-sizing: border-box;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #333;
+}
+.form-input {
+    width: 100%;
+    padding: 12px 20px;
+    border-radius: 25px; /* Forme pilule */
+    border: none;
+    background-color: #e6e6e6;
+    font-size: 1rem;
+    box-sizing: border-box;
+    outline: none;
+}
+.form-input:focus {
+    background-color: #dcdcdc;
+}
+
+/* =========================================
+   DASHBOARD (dashboard.html)
+   ========================================= */
+.navbar {
+    background-color: black;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+}
+.nav-left i {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.icon-gear { color: #007bff; }
+.icon-bell { color: #ffcc00; }
+
+.nav-right a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 1rem;
+    text-transform: lowercase;
+}
+.nav-right a:hover { text-decoration: underline; }
+
+.dashboard-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    width: 100%;
+}
+.dash-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+}
+.col-pink { background-color: #f0c4ff; }
+.col-white { background-color: white; }
+.col-blue { background-color: #b3d9ff; }
+
+.bg-icon {
+    font-size: 150px;
+    opacity: 0.2;
+    margin-bottom: 20px;
+    position: absolute;
+    z-index: 0;
+}
+.dash-btn {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 250px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    z-index: 1;
+    text-align: center;
+    transition: transform 0.2s;
+}
+.dash-btn:hover { transform: scale(1.05); }
+
+.user-avatar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #ccc;
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+/* =========================================
+   PAGE OFFRES (offres.html)
+   ========================================= */
+
+/* Conteneur principal pour centrer les cartes */
+.offers-container {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: flex-start; /* Aligne en haut */
+    gap: 40px; /* Espace entre les cartes */
+    padding: 50px 20px;
+    height: calc(100vh - 60px);
+    background-color: white; /* Fond blanc comme sur la maquette */
+}
+
+/* Style de base d'une carte */
+.offer-card {
+    border: 4px solid black; /* Bordure épaisse noire */
+    border-radius: 20px; /* Coins arrondis */
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pousse le prix vers le bas */
+    overflow: hidden; /* Pour que l'en-tête ne dépasse pas des arrondis */
+    height: 450px; /* Hauteur fixe pour uniformiser */
+    background: white;
+}
+
+/* En-tête coloré de la carte */
+.offer-header {
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid black; /* Petite séparation si voulu, sinon optionnel */
+}
+
+/* Couleurs spécifiques des en-têtes */
+.header-blue { background-color: #0033cc; }
+.header-orange { background-color: #ff6600; }
+.header-purple { background-color: #9900cc; }
+.header-green { background-color: #33cc33; }
+
+/* Contenu de la liste (Bullet points) */
+.offer-body {
+    padding: 20px;
+    flex-grow: 1; /* Prend l'espace disponible */
+}
+
+.offer-body ul {
+    list-style-type: disc; /* Puces rondes */
+    padding-left: 20px;
+    margin: 0;
+}
+
+.offer-body li {
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+
+/* Le bouton prix rose en bas */
+.offer-price {
+    background-color: #ff00cc; /* Rose vif */
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 10px; /* Un petit espace autour */
+    border-radius: 15px; /* Arrondi du bouton prix */
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>SecureCloud Pro - Inscription</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 40px; border-radius: 10px; width: 100%; max-width: 500px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .logo-title { color: #2c5aa0; text-align: center; font-weight: bold; margin-bottom: 30px; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #333; }
+        .form-input { width: 100%; height: 45px; background-color: #e0e0e0; border: none; border-radius: 25px; padding: 0 20px; box-sizing: border-box; }
+        .btn-container { text-align: center; margin-top: 30px; }
+        .btn-submit { background: white; border: 2px solid #ccc; padding: 10px 40px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
+        .btn-submit:hover { border-color: #2c5aa0; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div style="text-align: center;">
+        <img src="SecureCloudPro.png" alt="Logo" style="width: 120px;">
+        
+    </div>
+
+    <form action="inscription.php" method="POST">
+        <div class="form-group">
+            <label>NOM(S)</label>
+            <input type="text" name="nom" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>PRÉNOM(S)</label>
+            <input type="text" name="prenom" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>IDENTIFIANT</label>
+            <input type="text" name="identifiant" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>ADRESSE EMAIL</label>
+            <input type="email" name="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>TÉLÉPHONE</label>
+            <input type="tel" name="telephone" class="form-input">
+        </div>
+
+        <div class="form-group">
+            <label>MOT DE PASSE</label>
+            <input type="password" name="password" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <label>CONFIRMATION DU MOT DE PASSE</label>
+            <input type="password" name="password_confirmation" class="form-input" required>
+        </div>
+
+        <div class="btn-container">
+            <input type="submit" value="S'inscrire" class="btn-submit">
+        </div>
+        
+        <div style="margin-top: 20px; text-align: left;">
+            <a href="index.html" style="color: #888; text-decoration: none; font-size: 0.9rem;">Retour</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
