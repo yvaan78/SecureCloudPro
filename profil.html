@@ -2,73 +2,132 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureCloud Pro - Inscription</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f4; display: flex; justify-content: center; padding: 20px; }
-        .card { background: white; padding: 40px; border-radius: 10px; width: 100%; max-width: 500px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .logo-title { color: #2c5aa0; text-align: center; font-weight: bold; margin-bottom: 30px; }
-        .form-group { margin-bottom: 20px; }
-        label { display: block; font-weight: bold; font-size: 0.9rem; margin-bottom: 8px; color: #333; }
-        .form-input { width: 100%; height: 45px; background-color: #e0e0e0; border: none; border-radius: 25px; padding: 0 20px; box-sizing: border-box; }
-        .btn-container { text-align: center; margin-top: 30px; }
-        .btn-submit { background: white; border: 2px solid #ccc; padding: 10px 40px; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
-        .btn-submit:hover { border-color: #2c5aa0; }
+        :root {
+            --primary: #2c5aa0;
+            --success: #5F8B4C;
+            --danger: #B85C5C;
+            --light: #f4f4f4;
+            --gray-bg: #f8f9fa;
+        }
+
+        body { font-family: 'Inter', sans-serif; background: var(--light); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .register-card { background: white; padding: 40px; border-radius: 20px; width: 100%; max-width: 550px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .header-logo { text-align: center; margin-bottom: 25px; }
+        .header-logo img { width: 120px; }
+        
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .full-width { grid-column: span 2; }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 600; font-size: 0.8rem; color: #555; }
+        .form-group input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; box-sizing: border-box; transition: 0.3s; }
+        .form-group input:focus { border-color: var(--primary); outline: none; }
+
+        /* --- STYLE DES CRITÈRES VERSION MACHINA --- */
+        .password-criteria {
+            background: var(--gray-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            border: 1px solid #eee;
+        }
+        .criteria-title { font-weight: bold; margin-bottom: 10px; font-size: 0.9rem; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+        .criteria-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; padding: 4px 0; transition: 0.3s; }
+        
+        .criteria-error { color: #999; } /* Gris par défaut */
+        .criteria-ok { color: var(--success); font-weight: 500; }
+
+        .btn-submit { width: 100%; padding: 15px; background: var(--primary); color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn-submit:hover { opacity: 0.9; }
+
+        .alert { padding: 15px; border-radius: 10px; margin-bottom: 20px; font-size: 0.9rem; border-left: 5px solid; }
+        .alert-error { background: #fee2e2; color: #991b1b; border-color: var(--danger); }
+        .alert-success { background: #dcfce7; color: #166534; border-color: var(--success); }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div style="text-align: center;">
-        <img src="SecureCloudPro.png" alt="Logo" style="width: 120px;">
-        
+<div class="register-card">
+    <div class="header-logo">
+        <img src="SecureCloudPro.png" alt="Logo">
+        <h2 style="color: var(--primary); margin: 10px 0 5px 0;">Inscription</h2>
+        <p style="font-size: 0.9rem; color: #777;">Sécurisez vos données avec SecureCloud</p>
     </div>
 
-    <form action="inscription.php" method="POST">
-        <div class="form-group">
-            <label>NOM(S)</label>
-            <input type="text" name="nom" class="form-input" required>
+    <?php if(isset($_GET['success'])): ?>
+        <div class="alert alert-success">✅ Compte créé avec succès !</div>
+    <?php endif; ?>
+
+    <?php if(isset($_GET['error'])): ?>
+        <div class="alert alert-error">❌ <?= htmlspecialchars($_GET['error']) ?></div>
+    <?php endif; ?>
+
+    <form action="traitement.php" method="POST">
+        <div class="form-grid">
+            <div class="form-group">
+                <label>NOM</label>
+                <input type="text" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label>PRÉNOM</label>
+                <input type="text" name="prenom" required>
+            </div>
+            <div class="form-group full-width">
+                <label>ADRESSE EMAIL</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label>MOT DE PASSE</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+            <div class="form-group">
+                <label>CONFIRMATION</label>
+                <input type="password" name="password_confirmation" required>
+            </div>
         </div>
 
-        <div class="form-group">
-            <label>PRÉNOM(S)</label>
-            <input type="text" name="prenom" class="form-input" required>
+        <div class="password-criteria">
+            <div class="criteria-title">📋 Critères de sécurité</div>
+            <div class="criteria-item criteria-error" id="crit-length"><span>❌</span> 14 caractères</div>
+            <div class="criteria-item criteria-error" id="crit-lower"><span>❌</span> Lettre minuscule</div>
+            <div class="criteria-item criteria-error" id="crit-upper"><span>❌</span> Lettre majuscule</div>
+            <div class="criteria-item criteria-error" id="crit-digit"><span>❌</span> Un chiffre</div>
+            <div class="criteria-item criteria-error" id="crit-special"><span>❌</span> Caractère spécial</div>
         </div>
 
-        <div class="form-group">
-            <label>IDENTIFIANT</label>
-            <input type="text" name="identifiant" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-            <label>ADRESSE EMAIL</label>
-            <input type="email" name="email" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-            <label>TÉLÉPHONE</label>
-            <input type="tel" name="telephone" class="form-input">
-        </div>
-
-        <div class="form-group">
-            <label>MOT DE PASSE</label>
-            <input type="password" name="password" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-            <label>CONFIRMATION DU MOT DE PASSE</label>
-            <input type="password" name="password_confirmation" class="form-input" required>
-        </div>
-
-        <div class="btn-container">
-            <input type="submit" value="S'inscrire" class="btn-submit">
-        </div>
-        
-        <div style="margin-top: 20px; text-align: left;">
-            <a href="index.html" style="color: #888; text-decoration: none; font-size: 0.9rem;">Retour</a>
-        </div>
+        <button type="submit" class="btn-submit">Créer mon compte SecureCloud</button>
     </form>
 </div>
+
+<script>
+    const passwordInput = document.getElementById('password');
+    
+    passwordInput.addEventListener('input', function() {
+        const val = this.value;
+        
+        const requirements = [
+            { id: 'crit-length',  met: val.length >= 14 },
+            { id: 'crit-lower',   met: /[a-z]/.test(val) },
+            { id: 'crit-upper',   met: /[A-Z]/.test(val) },
+            { id: 'crit-digit',   met: /[0-9]/.test(val) },
+            { id: 'crit-special', met: /[!@#$%^&*()\-_=+{};:,<.>]/.test(val) }
+        ];
+
+        requirements.forEach(req => {
+            const el = document.getElementById(req.id);
+            if (req.met) {
+                el.innerHTML = `<span>✅</span> ${el.innerText.substring(2)}`;
+                el.className = 'criteria-item criteria-ok';
+            } else {
+                el.innerHTML = `<span>❌</span> ${el.innerText.substring(2)}`;
+                el.className = 'criteria-item criteria-error';
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
